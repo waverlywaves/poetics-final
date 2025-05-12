@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Horizontally Bouncing Photos</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+
+        .photo-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .photo {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            animation: horizontal-bounce 10s ease-in-out infinite;
+            transition: transform 0.3s;
+        }
+
+        .photo:nth-child(1) {
+            top: 20%;
+            animation-delay: 0s;
+        }
+
+        .photo:nth-child(2) {
+            top: 50%;
+            animation-delay: 2s;
+        }
+
+        .photo:nth-child(3) {
+            top: 80%;
+            animation-delay: 4s;
+        }
+
+        @keyframes horizontal-bounce {
+            0%, 100% {
+                left: 0;
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                left: calc(100% - 650px);
+                transform: translateY(-50px) rotate(5deg);
+            }
+            50% {
+                left: 0;
+                transform: translateY(0) rotate(-5deg);
+            }
+            75% {
+                left: calc(100% - 650px);
+                transform: translateY(-50px) rotate(5deg);
+            }
+        }
+
+        .photo:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="photo-container">
+        <img src="IMG_3737.jpg" alt="Photo 1" class="photo">
+        <img src="IMG_3738.jpg" alt="Photo 2" class="photo">
+        <img src="IMG_3739.jpg" alt="Photo 3" class="photo">
+    </div>
+
+    <script>
+        // Optional JavaScript to add dynamic interaction
+        const photos = document.querySelectorAll('.photo');
+        
+        photos.forEach(photo => {
+            photo.addEventListener('click', () => {
+                photo.style.animationPlayState = 
+                    photo.style.animationPlayState === 'paused' ? 'running' : 'paused';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Horizontally Bouncing Photos</title>
     <style>
         body {
             display: flex;
@@ -15,53 +14,40 @@
         }
 
         .photo-container {
-            position: relative;
+            display: flex;
+            justify-content: space-around;
             width: 100%;
-            height: 100%;
+            padding: 20px;
         }
 
         .photo {
-            position: absolute;
             width: 250px;
             height: 250px;
             object-fit: cover;
             border-radius: 15px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            animation: horizontal-bounce 10s ease-in-out infinite;
+            animation: bounce 3s ease-in-out infinite;
             transition: transform 0.3s;
         }
 
         .photo:nth-child(1) {
-            top: 20%;
             animation-delay: 0s;
         }
 
         .photo:nth-child(2) {
-            top: 50%;
-            animation-delay: 2s;
+            animation-delay: 1s;
         }
 
         .photo:nth-child(3) {
-            top: 80%;
-            animation-delay: 4s;
+            animation-delay: 2s;
         }
 
-        @keyframes horizontal-bounce {
+        @keyframes bounce {
             0%, 100% {
-                left: 0;
-                transform: translateY(0) rotate(0deg);
-            }
-            25% {
-                left: calc(100% - 650px);
-                transform: translateY(-50px) rotate(5deg);
+                transform: translateY(0);
             }
             50% {
-                left: 0;
-                transform: translateY(0) rotate(-5deg);
-            }
-            75% {
-                left: calc(100% - 650px);
-                transform: translateY(-50px) rotate(5deg);
+                transform: translateY(-50px);
             }
         }
 
